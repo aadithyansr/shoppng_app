@@ -1,4 +1,4 @@
-import 'package:ecommc/screens/components/body.dart';
+import 'package:ecommc/screens/homeS.dart';
 import 'package:flashy_tab_bar2/flashy_tab_bar2.dart';
 import 'package:flutter/material.dart';
 
@@ -13,8 +13,8 @@ class _samPState extends State<samP> {
   int _selectedIndex = 0;
 
   List<Widget> tabItems = [
-    Column(children: [Padding(padding: EdgeInsets.all(1), child: body())]),
-    Center(child: Text("00000")),
+    Center(child: homeS()),
+    Center(child: Text('1235')),
     Center(child: Text("222222")),
   ];
 
@@ -28,8 +28,6 @@ class _samPState extends State<samP> {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Scaffold(
-        backgroundColor: Colors.blueGrey,
-        appBar: AppBar(),
         body: Center(
           child: tabItems[_selectedIndex],
         ),
@@ -55,52 +53,6 @@ class _samPState extends State<samP> {
               title: Text('Highlights'),
             ),
           ],
-        ),
-        drawer: Drawer(
-          child: ListView(
-            padding: EdgeInsets.zero,
-            children: <Widget>[
-              DrawerHeader(
-                  decoration: BoxDecoration(color: Colors.blueGrey),
-                  child: Row(
-                    children: [
-                      CircleAvatar(
-                        backgroundColor: Colors.black,
-                        radius: 55,
-                      ),
-                      Padding(padding: EdgeInsets.all(5)),
-                      Text(
-                        'Lionel Messi',
-                        style: TextStyle(fontSize: 26),
-                      )
-                    ],
-                  )),
-              ListTile(
-                leading: Icon(Icons.person),
-                title: Text('Profile'),
-              ),
-              ListTile(
-                leading: Icon(Icons.wallet),
-                title: Text('Wallet'),
-              ),
-              ListTile(
-                leading: Icon(Icons.local_activity),
-                title: Text('Activity'),
-              ),
-              ListTile(
-                leading: Icon(Icons.settings),
-                title: Text('Settings'),
-              ),
-              ListTile(
-                leading: Icon(Icons.help),
-                title: Text('Help'),
-              ),
-              ListTile(
-                leading: Icon(Icons.logout),
-                title: Text('Sign Out'),
-              ),
-            ],
-          ),
         ),
       ),
     );
