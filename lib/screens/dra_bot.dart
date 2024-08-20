@@ -14,8 +14,8 @@ class _samPState extends State<samP> {
 
   List<Widget> tabItems = [
     Column(children: [Padding(padding: EdgeInsets.all(1), child: body())]),
-    Center(child: Text("1")),
-    Center(child: Text("2")),
+    Center(child: Text("00000")),
+    Center(child: Text("222222")),
   ];
 
   @override
