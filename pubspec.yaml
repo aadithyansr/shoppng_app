@@ -8,8 +8,6 @@ environment:
 
 dependencies:
   advanced_salomon_bottom_bar: ^3.3.4
-  carousel_slider: ^5.0.0
-  flashy_tab_bar2: ^0.0.10
   flutter:
     sdk: flutter
 
