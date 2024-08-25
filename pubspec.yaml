@@ -7,6 +7,7 @@ environment:
   sdk: '>=3.4.4 <4.0.0'
 
 dependencies:
+  advanced_salomon_bottom_bar: ^3.3.4
   carousel_slider: ^5.0.0
   flashy_tab_bar2: ^0.0.10
   flutter:
@@ -19,3 +20,16 @@ dev_dependencies:
 
 flutter:
   uses-material-design: true
+  assets:
+    - assets/img/def.webp
+    - assets/img/elec.jpg
+    - assets/img/fash.jpg
+    - assets/img/fit.webp
+    - assets/img/gadgets.jpg
+    - assets/img/groc.jpg
+    - assets/img/heal.jpg
+    - assets/img/shirt.jpg
+    - assets/img/ipho.jpg
+    
+    
+    

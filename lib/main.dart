@@ -1,4 +1,4 @@
-import 'package:ecommc/screens/dra_bot.dart';
+import 'package:ecommc/screens/components/dra_bot.dart';
 
 import 'package:flutter/material.dart';
 
@@ -11,6 +11,6 @@ class MainApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(debugShowCheckedModeBanner: false, home: samP());
+    return MaterialApp(debugShowCheckedModeBanner: false, home: sam());
   }
 }
