@@ -1,7 +1,10 @@
 import 'package:ecommc/models/proD.dart';
+import 'package:ecommc/models/provider.dart';
+import 'package:ecommc/screens/components/dra_bot.dart';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class Homescreen extends StatefulWidget {
   Homescreen({super.key});
@@ -53,7 +56,7 @@ class _HomescreenState extends State<Homescreen> {
               context,
             ),
             _carous(context),
-            SizedBox(height: 10),
+            const SizedBox(height: 10),
             _rowW(context),
             gridB(context),
           ],
@@ -68,25 +71,31 @@ class _HomescreenState extends State<Homescreen> {
     return SafeArea(
         child: Container(
             color: const Color.fromARGB(255, 212, 202, 179).withOpacity(0.2),
-            margin: EdgeInsets.all(2),
+            margin: const EdgeInsets.all(2),
             child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Expanded(
                       child: Padding(
-                          padding: EdgeInsets.only(
+                          padding: const EdgeInsets.only(
                               top: 10, bottom: 10, right: 10, left: 10),
                           child: CupertinoSearchTextField(
                             controller: textEditingController,
-                            prefixIcon: Icon(
+                            prefixIcon: const Icon(
                               Icons.search,
                               color: Colors.black,
                               size: 20,
                             ),
                           ))),
                   IconButton(
-                      onPressed: () {},
-                      icon: Icon(Icons.notifications_none_outlined, size: 30))
+                      onPressed: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => const NotiPage()));
+                      },
+                      icon: const Icon(Icons.notifications_none_outlined,
+                          size: 30))
                 ])));
   }
 
@@ -130,88 +139,84 @@ class _HomescreenState extends State<Homescreen> {
 
   gridB(BuildContext context) {
     return GridView.builder(
-      scrollDirection: Axis.vertical,
-      physics: const NeverScrollableScrollPhysics(),
-      shrinkWrap: true,
-      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-          crossAxisCount: 2,
-          crossAxisSpacing: 12.0,
-          mainAxisSpacing: 12.0,
-          mainAxisExtent: 300),
-      itemCount: HomPMap.length,
-      itemBuilder: (_, index) {
-        return Container(
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(
-              16.0,
+        scrollDirection: Axis.vertical,
+        physics: const NeverScrollableScrollPhysics(),
+        shrinkWrap: true,
+        padding: const EdgeInsets.all(8),
+        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+            crossAxisCount: 2,
+            crossAxisSpacing: 12.0,
+            childAspectRatio: 0.75,
+            mainAxisSpacing: 10,
+            mainAxisExtent: 300),
+        itemCount: products.length,
+        itemBuilder: (context, index) {
+          final product = products[index];
+          return Container(
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(16),
+              color: Colors.amber,
             ),
-            color: const Color.fromARGB(255, 245, 229, 129),
-          ),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              ClipRRect(
-                borderRadius: const BorderRadius.only(
-                  topLeft: Radius.circular(16.0),
-                  topRight: Radius.circular(16.0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                ClipRRect(
+                  borderRadius: const BorderRadius.only(
+                    topLeft: Radius.circular(16.0),
+                    topRight: Radius.circular(16.0),
+                  ),
+                  child: Image.network(
+                    product.imageUrl,
+                    height: 150,
+                    width: double.infinity,
+                    fit: BoxFit.cover,
+                  ),
                 ),
-                child: Image.network(
-                  "${HomPMap.elementAt(index)['images']}",
-                  height: 160,
-                  width: double.infinity,
-                  fit: BoxFit.cover,
+                Padding(
+                  padding: const EdgeInsets.all(10),
+                  child: Text(product.title,
+                      style: const TextStyle(
+                          fontSize: 20, fontWeight: FontWeight.bold)),
                 ),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
+                Padding(
+                  padding: const EdgeInsets.all(10),
+                  child: Text('\$${product.price.toString()}',
+                      style: const TextStyle(fontSize: 16, color: Colors.grey)),
+                ),
+                const SizedBox(
+                  height: 1.0,
+                ),
+                Row(
                   children: [
-                    Text(
-                      "${HomPMap.elementAt(index)['title']}",
-                      style: Theme.of(context).textTheme.titleMedium!.merge(
-                            const TextStyle(fontWeight: FontWeight.bold),
-                          ),
+                    IconButton(
+                      onPressed: () {
+                        Provider.of<FavProvider>(context, listen: false)
+                            .addToCart(product);
+                        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                            content:
+                                Text('${product.title} added to Wishlist')));
+                      },
+                      icon: const Icon(
+                        Icons.favorite_outline_outlined,
+                      ),
                     ),
-                    const SizedBox(
-                      height: 15.0,
-                    ),
-                    Text(
-                      "${HomPMap.elementAt(index)['price']}",
-                      style: Theme.of(context).textTheme.titleSmall!.merge(
-                            TextStyle(
-                              fontWeight: FontWeight.w700,
-                              color: Colors.grey.shade500,
-                            ),
-                          ),
-                    ),
-                    const SizedBox(
-                      height: 15.0,
-                    ),
-                    Row(
-                      children: [
-                        IconButton(
-                          onPressed: () {},
-                          icon: const Icon(
-                            Icons.favorite_outline_outlined,
-                          ),
-                        ),
-                        IconButton(
-                          onPressed: () {},
-                          icon: const Icon(
-                            Icons.add_shopping_cart_outlined,
-                          ),
-                        ),
-                      ],
+                    IconButton(
+                      onPressed: () {
+                        Provider.of<CartProvider>(context, listen: false)
+                            .addToCart(product);
+                        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                            content: Text('${product.title} added to cart')));
+                      },
+                      icon: const Icon(
+                        Icons.add_shopping_cart_outlined,
+                      ),
                     ),
                   ],
                 ),
-              ),
-            ],
-          ),
-        );
-      },
-    );
+              ],
+            ),
+          );
+        });
   }
 
   _rowW(BuildContext context) {
@@ -225,10 +230,10 @@ class _HomescreenState extends State<Homescreen> {
                 itemCount: catMap.length,
                 itemBuilder: (context, index) {
                   return Padding(
-                      padding: EdgeInsets.only(top: 18),
+                      padding: const EdgeInsets.only(top: 18),
                       child: Container(
                         width: 85,
-                        margin: EdgeInsets.only(left: 1, right: 1),
+                        margin: const EdgeInsets.only(left: 1, right: 1),
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: <Widget>[

@@ -1,24 +1,28 @@
+import 'package:ecommc/screens/cart.dart';
+import 'package:ecommc/screens/favo.dart';
 import 'package:ecommc/screens/homescreen.dart';
 import 'package:ecommc/screens/prof.dart';
 import 'package:flutter/material.dart';
 import 'package:advanced_salomon_bottom_bar/advanced_salomon_bottom_bar.dart';
 
 void main() {
-  runApp(sam());
+  runApp(const BottmPage());
 }
 
-class sam extends StatefulWidget {
+class BottmPage extends StatefulWidget {
+  const BottmPage({super.key});
+
   @override
-  _samState createState() => _samState();
+  _BottmPageState createState() => _BottmPageState();
 }
 
-class _samState extends State<sam> {
+class _BottmPageState extends State<BottmPage> {
   var _currentIndex = 0;
 
   final List<Widget> _pages = [
     Homescreen(),
-    const notify(),
-    const notify(),
+    CartPage(),
+    FavoPage(),
     const Prof()
   ];
 
@@ -56,7 +60,7 @@ class _samState extends State<sam> {
             /// Search
             AdvancedSalomonBottomBarItem(
                 icon: const Icon(Icons.favorite_border_outlined),
-                title: const Text("My Wishlist"),
+                title: const Text("Wishlist"),
                 activeIcon: const Icon(Icons.favorite)),
 
             /// Profile
@@ -71,14 +75,15 @@ class _samState extends State<sam> {
   }
 }
 
-class notify extends StatelessWidget {
-  const notify({super.key});
+class NotiPage extends StatelessWidget {
+  const NotiPage({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: const Color.fromARGB(255, 227, 222, 222),
+        title: const Text('Notifications'),
       ),
     );
   }

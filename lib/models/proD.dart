@@ -1,3 +1,5 @@
+import 'package:ecommc/models/products.dart';
+
 final List<Map<String, dynamic>> catMap = [
   {
     "title": "Mobile",
@@ -82,4 +84,47 @@ List<Map<String, dynamic>> HomPMap = [
         "https://imgs.search.brave.com/W2rZcbOGdLo7oNWFL9ZHXnnGH3Sn8JUHr1T68SaEoQE/rs:fit:500:0:0:0/g:ce/aHR0cHM6Ly9jZG4u/c2hvcGlmeS5jb20v/cy9maWxlcy8xLzAy/NzcvMzIwMS83MjQ5/L2ZpbGVzL3JlZG9u/ZS13YXgtZ3JlZW4t/LWNvbXByZXNzXzQ4/MHg0ODAud2VicD92/PTE2OTI1NDEwNjg",
     "price": "₹2,155"
   },
+];
+
+final products = [
+  Product(
+      imageUrl:
+          "https://imgs.search.brave.com/SDMwRbilaGL68yzRuCWo3EKM2qbDYKD-WCDj-dulUec/rs:fit:500:0:0:0/g:ce/aHR0cHM6Ly9mZG4u/Z3NtYXJlbmEuY29t/L2ltZ3Jvb3QvbmV3/cy8yNC8wNi9yZWFs/bWUtZ3QtNi1jYW1l/cmEtc2FtcGxlcy9p/bmxpbmUvLTEyMDB3/MS9nc21hcmVuYV8w/MDEuanBn",
+      title: "Realme gt6",
+      price: "₹26,000"),
+  Product(
+      imageUrl:
+          "https://imgs.search.brave.com/6wLsxlDhHzmR7jws1hgLDGmjlIsWNcMHSAOqqVPAb6c/rs:fit:500:0:0:0/g:ce/aHR0cHM6Ly93d3cu/YmhwaG90b3ZpZGVv/LmNvbS9jZG4tY2dp/L2ltYWdlL2Zvcm1h/dD1hdXRvLGZpdD1z/Y2FsZS1kb3duLHdp/ZHRoPTUwMCxxdWFs/aXR5PTk1L2h0dHBz/Oi8vd3d3LmJocGhv/dG92aWRlby5jb20v/aW1hZ2VzL2ltYWdl/czUwMHg1MDAvbmlr/b25fa2V5bWlzc2lv/bl8zNjBfYWN0aW9u/X2NhbWVyYV8xNDUy/MDE4MDIwXzEyMTQz/MDguanBn",
+      title: "Nikon Camera",
+      price: '₹ 46,799'),
+  Product(
+      imageUrl:
+          "https://imgs.search.brave.com/6KAdyzAabpKeGKYFa2QOX69O4Q_YXiXAI0TWJMp2rvw/rs:fit:500:0:0:0/g:ce/aHR0cHM6Ly9tLm1l/ZGlhLWFtYXpvbi5j/b20vaW1hZ2VzL0kv/NTFRLWY1RW14LUwu/anBn",
+      title: "dumbell kit ",
+      price: ' ₹ 3,999'),
+  Product(
+      imageUrl:
+          "https://imgs.search.brave.com/yAJD8nRWnS2DysgnvmJhgcxNAWfuVPbUW_Bkjxnxlm0/rs:fit:500:0:0:0/g:ce/aHR0cHM6Ly9yZXMu/Y2xvdWRpbmFyeS5j/b20vdG90YWxtZXJj/aGFuZGlzZS9pbWFn/ZS9mZXRjaC9mX2F1/dG8scV9hdXRvOmVj/byx3XzUwMC9odHRw/czovL3d3dy50b3Rh/bG1lcmNoYW5kaXNl/LmNvLnVrL21lZGlh/L0V4cHJlc3NfMjYw/MG1BaF9UdWJlX1Bv/d2VyX0JhbmtzX2Js/YWNrXzIwMTcuanBn",
+      title: "Power Bank",
+      price: "₹ 1,980"),
+  Product(
+      imageUrl:
+          "https://imgs.search.brave.com/iZC9rSO9SuK_FhEZPZx3hgiTyV6LKzbCdVehb4fMmu8/rs:fit:500:0:0:0/g:ce/aHR0cHM6Ly9tLm1l/ZGlhLWFtYXpvbi5j/b20vaW1hZ2VzL1Mv/YXBsdXMtbWVkaWEt/bGlicmFyeS1zZXJ2/aWNlLW1lZGlhLzU4/ZjA4M2RmLWUzYjAt/NDAzNi05NDdmLTZl/MDRiNGYyNDMxMS5f/X0NSMCwwLDE0NjQs/NjAwX1BUMF9TWDE0/NjRfVjFfX18uanBn",
+      title: "Boat Airpodes",
+      price: "₹ 2,599"),
+  Product(
+      imageUrl:
+          "https://www.apple.com/newsroom/images/2023/09/apple-debuts-iphone-15-and-iphone-15-plus/article/Apple-iPhone-15-lineup-color-lineup-230912_big.jpg.large.jpg",
+      title: "Iphone 15",
+      price: "₹66,580"),
+  Product(
+      imageUrl:
+          "https://imgs.search.brave.com/W2rZcbOGdLo7oNWFL9ZHXnnGH3Sn8JUHr1T68SaEoQE/rs:fit:500:0:0:0/g:ce/aHR0cHM6Ly9jZG4u/c2hvcGlmeS5jb20v/cy9maWxlcy8xLzAy/NzcvMzIwMS83MjQ5/L2ZpbGVzL3JlZG9u/ZS13YXgtZ3JlZW4t/LWNvbXByZXNzXzQ4/MHg0ODAud2VicD92/PTE2OTI1NDEwNjg",
+      title: "Hair wax",
+      price: "₹ 1,899"),
+  Product(
+      imageUrl:
+          "https://imgs.search.brave.com/13lcK7U9RZ2zk_oYOZyB5XaF-Ud4N3fc2EsrMhpse2s/rs:fit:500:0:0:0/g:ce/aHR0cHM6Ly93d3cu/dW50dWNraXQuY29t/L2Nkbi9zaG9wL3By/b2R1Y3RzL0NPT0xJ/REdFLVVOVFVDS0lU/LTQxMTMyUmVkLVNT/LUNPVFRPTi1QUklO/VC1SRUQtMV81NDB4/LmpwZz92PTE2ODE4/MzQ1MzY",
+      title: "Shirt",
+      price: '₹ 1,266'),
 ];
