@@ -1,6 +1,9 @@
 plugins {
     id "com.android.application"
     // START: FlutterFire Configuration
+    id 'com.google.gms.google-services'
+    // END: FlutterFire Configuration
+    // START: FlutterFire Configuration
   
     // END: FlutterFire Configuration
     id "kotlin-android"
@@ -42,6 +45,7 @@ android {
         // You can update the following values to match your application needs.
         // For more information, see: https://docs.flutter.dev/deployment/android#reviewing-the-gradle-build-configuration.
         minSdk = flutter.minSdkVersion
+        minSdkVersion 23
         targetSdk = flutter.targetSdkVersion
         versionCode = flutterVersionCode.toInteger()
         versionName = flutterVersionName

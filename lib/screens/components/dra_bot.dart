@@ -21,7 +21,8 @@ class _BottmPageState extends State<BottmPage> {
 
   final List<Widget> _pages = [
     Homescreen(),
-    CartPage(),
+    const expolreP(),
+    const CartPage(),
     FavoPage(),
     const Prof()
   ];
@@ -35,6 +36,7 @@ class _BottmPageState extends State<BottmPage> {
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
       home: Scaffold(
+        backgroundColor: const Color.fromRGBO(26, 76, 98, 100),
         body: _pages[
             _currentIndex], // Display the content based on the selected index
         bottomNavigationBar: AdvancedSalomonBottomBar(
@@ -47,27 +49,38 @@ class _BottmPageState extends State<BottmPage> {
           items: [
             /// Home
             AdvancedSalomonBottomBarItem(
-              icon: const Icon(Icons.home),
-              title: const Text("Home"),
-            ),
+                icon: const Icon(Icons.home),
+                title: const Text("Home"),
+                selectedColor: Colors.white,
+                unselectedColor: Colors.white),
+            AdvancedSalomonBottomBarItem(
+                icon: const Icon(Icons.explore),
+                title: const Text("Expolre"),
+                selectedColor: Colors.white,
+                unselectedColor: Colors.white),
 
             /// Likes
             AdvancedSalomonBottomBarItem(
-              icon: const Icon(Icons.shopping_cart_checkout),
-              title: const Text("My Cart"),
-            ),
+                icon: const Icon(Icons.shopping_cart_checkout),
+                title: const Text("My Cart"),
+                selectedColor: Colors.white,
+                unselectedColor: Colors.white),
 
             /// Search
             AdvancedSalomonBottomBarItem(
                 icon: const Icon(Icons.favorite_border_outlined),
                 title: const Text("Wishlist"),
-                activeIcon: const Icon(Icons.favorite)),
+                activeIcon: const Icon(Icons.favorite),
+                selectedColor: Colors.white,
+                unselectedColor: Colors.white),
 
             /// Profile
             AdvancedSalomonBottomBarItem(
                 icon: const Icon(Icons.person),
                 title: const Text("Profile"),
-                activeIcon: const Icon(Icons.person)),
+                activeIcon: const Icon(Icons.person),
+                selectedColor: Colors.white,
+                unselectedColor: Colors.white),
           ],
         ),
       ),

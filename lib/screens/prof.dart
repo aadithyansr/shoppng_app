@@ -1,3 +1,7 @@
+import 'dart:async';
+
+import 'package:ecommc/screens/components/dra_bot.dart';
+
 import 'package:flutter/material.dart';
 
 class Prof extends StatefulWidget {
@@ -12,25 +16,19 @@ class _ProfState extends State<Prof> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        backgroundColor: const Color.fromRGBO(76, 119, 102, 1),
         appBar: AppBar(
           title: const Text(
             'My Account',
-            style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
+            style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
           ),
-          backgroundColor: const Color.fromARGB(255, 255, 253, 253),
+          backgroundColor: const Color.fromRGBO(76, 119, 102, 1),
           actions: <Widget>[
             IconButton(
                 onPressed: () {},
                 icon: const Icon(
                   Icons.search,
-                  color: Colors.red,
-                  size: 35,
-                )),
-            IconButton(
-                onPressed: () {},
-                icon: const Icon(
-                  Icons.shopping_cart,
-                  color: Colors.blueAccent,
+                  color: Color.fromARGB(255, 246, 244, 243),
                   size: 35,
                 )),
           ],
@@ -92,7 +90,7 @@ class _ProfState extends State<Prof> {
               style: TextStyle(
                   fontSize: 30,
                   fontWeight: FontWeight.bold,
-                  color: Colors.black),
+                  color: Color.fromARGB(255, 250, 246, 246)),
             ),
           ],
         ),
@@ -130,14 +128,15 @@ class _ProfState extends State<Prof> {
             margin: const EdgeInsets.only(bottom: 10, left: 15, right: 3),
             height: 110,
             decoration: BoxDecoration(
-                color: Colors.pinkAccent,
+                color:
+                    const Color.fromARGB(255, 212, 202, 179).withOpacity(0.2),
                 borderRadius: BorderRadius.circular(16)),
             child: const Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Icon(
                   Icons.wb_twilight_sharp,
-                  color: Colors.white,
+                  color: Color.fromARGB(255, 164, 38, 95),
                 ),
                 Text(
                   'Change Language',
@@ -154,13 +153,15 @@ class _ProfState extends State<Prof> {
             margin: const EdgeInsets.only(bottom: 10, left: 5, right: 15),
             height: 110,
             decoration: BoxDecoration(
-                color: Colors.blue, borderRadius: BorderRadius.circular(16)),
+                color:
+                    const Color.fromARGB(255, 212, 202, 179).withOpacity(0.2),
+                borderRadius: BorderRadius.circular(16)),
             child: const Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Icon(
                   Icons.phone_in_talk_sharp,
-                  color: Colors.white,
+                  color: Color.fromARGB(255, 50, 121, 192),
                 ),
                 Text(
                   'Help Center',
@@ -186,7 +187,10 @@ class _ProfState extends State<Prof> {
           const Padding(
               padding: EdgeInsets.only(top: 1, bottom: 15, left: 15),
               child: Text('Payments',
-                  style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold))),
+                  style: TextStyle(
+                      fontSize: 22,
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold))),
           Padding(
               padding: const EdgeInsets.only(top: 1, bottom: 10, left: 15),
               child: Column(children: [
@@ -200,7 +204,10 @@ class _ProfState extends State<Prof> {
                     SizedBox(width: 10),
                     Text('Bank & UPI Details',
                         style: TextStyle(
-                            fontWeight: FontWeight.normal, fontSize: 18)),
+                          fontWeight: FontWeight.normal,
+                          fontSize: 18,
+                          color: Colors.white,
+                        )),
                   ],
                 ),
                 divideR(context),
@@ -214,14 +221,18 @@ class _ProfState extends State<Prof> {
                     SizedBox(width: 10),
                     Text('Payment & Refund',
                         style: TextStyle(
-                            fontWeight: FontWeight.normal, fontSize: 18)),
+                            fontWeight: FontWeight.normal,
+                            color: Colors.white,
+                            fontSize: 18)),
                   ],
                 ),
                 const Padding(
                     padding: EdgeInsets.only(top: 25, bottom: 25),
                     child: Text('My Activity',
                         style: TextStyle(
-                            fontSize: 22, fontWeight: FontWeight.bold))),
+                            fontSize: 22,
+                            color: Colors.white,
+                            fontWeight: FontWeight.bold))),
                 Padding(
                     padding: const EdgeInsets.only(
                       top: 1,
@@ -238,7 +249,9 @@ class _ProfState extends State<Prof> {
                           SizedBox(width: 10),
                           Text('My Products',
                               style: TextStyle(
-                                  fontWeight: FontWeight.normal, fontSize: 18)),
+                                  fontWeight: FontWeight.normal,
+                                  color: Colors.white,
+                                  fontSize: 18)),
                         ],
                       ),
                       divideR(context),
@@ -252,7 +265,9 @@ class _ProfState extends State<Prof> {
                           SizedBox(width: 10),
                           Text('Community',
                               style: TextStyle(
-                                  fontWeight: FontWeight.normal, fontSize: 18)),
+                                  fontWeight: FontWeight.normal,
+                                  color: Colors.white,
+                                  fontSize: 18)),
                         ],
                       ),
                       divideR(context),
@@ -268,12 +283,13 @@ class _ProfState extends State<Prof> {
                                   Icon(
                                     Icons.settings,
                                     size: 25,
-                                    color: Colors.black,
+                                    color: Color.fromARGB(255, 242, 239, 239),
                                   ),
                                   SizedBox(width: 10),
                                   Text('Settings',
                                       style: TextStyle(
                                           fontWeight: FontWeight.normal,
+                                          color: Colors.white,
                                           fontSize: 18)),
                                 ],
                               ),
@@ -289,6 +305,7 @@ class _ProfState extends State<Prof> {
                                   Text('Rate this App',
                                       style: TextStyle(
                                           fontWeight: FontWeight.normal,
+                                          color: Colors.white,
                                           fontSize: 18)),
                                 ],
                               ),
@@ -305,12 +322,13 @@ class _ProfState extends State<Prof> {
                                         Icon(
                                           Icons.question_mark_rounded,
                                           size: 25,
-                                          color: Colors.black,
+                                          color: Colors.white,
                                         ),
                                         SizedBox(width: 10),
                                         Text('Terms & Conditions',
                                             style: TextStyle(
                                                 fontWeight: FontWeight.normal,
+                                                color: Colors.white,
                                                 fontSize: 18)),
                                       ],
                                     ),
@@ -326,6 +344,7 @@ class _ProfState extends State<Prof> {
                                         Text('Log Out',
                                             style: TextStyle(
                                                 fontWeight: FontWeight.normal,
+                                                color: Colors.white,
                                                 fontSize: 18)),
                                       ],
                                     ),
@@ -341,11 +360,47 @@ class _ProfState extends State<Prof> {
 
   divideR(BuildContext context) {
     return const Divider(
-      height: 50,
-      thickness: 0.9,
-      indent: 10,
-      endIndent: 10,
-      color: Colors.black,
+        height: 50,
+        thickness: 0.9,
+        indent: 10,
+        endIndent: 10,
+        color: Colors.white);
+  }
+}
+
+class Loader extends StatefulWidget {
+  const Loader({super.key});
+
+  @override
+  State<Loader> createState() => _LoaderState();
+}
+
+class _LoaderState extends State<Loader> {
+  @override
+  void initState() {
+    super.initState();
+
+    Timer(
+        const Duration(seconds: 2),
+        () => Navigator.pushReplacement(context,
+            MaterialPageRoute(builder: (context) => const BottmPage())));
+  }
+
+  Widget build(BuildContext context) {
+    return const Scaffold(
+      backgroundColor: Color.fromRGBO(76, 119, 102, 1),
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            CircularProgressIndicator(
+              backgroundColor: Colors.white,
+              valueColor: AlwaysStoppedAnimation(Colors.green),
+              strokeWidth: 8,
+            )
+          ],
+        ),
+      ),
     );
   }
 }

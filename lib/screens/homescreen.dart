@@ -1,10 +1,11 @@
 import 'package:ecommc/models/proD.dart';
-import 'package:ecommc/models/provider.dart';
+
 import 'package:ecommc/screens/components/dra_bot.dart';
+import 'package:ecommc/screens/components/productC.dart';
+import 'package:ecommc/screens/prouct_Page.dart';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 
 class Homescreen extends StatefulWidget {
   Homescreen({super.key});
@@ -34,6 +35,7 @@ class _HomescreenState extends State<Homescreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: const Color.fromRGBO(76, 119, 102, 1),
       body: bodyUI(context),
     );
   }
@@ -70,7 +72,7 @@ class _HomescreenState extends State<Homescreen> {
   _topBar(BuildContext context) {
     return SafeArea(
         child: Container(
-            color: const Color.fromARGB(255, 212, 202, 179).withOpacity(0.2),
+            color: const Color.fromRGBO(26, 72, 98, 0),
             margin: const EdgeInsets.all(2),
             child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -80,10 +82,12 @@ class _HomescreenState extends State<Homescreen> {
                           padding: const EdgeInsets.only(
                               top: 10, bottom: 10, right: 10, left: 10),
                           child: CupertinoSearchTextField(
+                            backgroundColor:
+                                const Color.fromRGBO(26, 72, 98, 10),
                             controller: textEditingController,
                             prefixIcon: const Icon(
                               Icons.search,
-                              color: Colors.black,
+                              color: Color.fromARGB(255, 241, 234, 234),
                               size: 20,
                             ),
                           ))),
@@ -94,8 +98,8 @@ class _HomescreenState extends State<Homescreen> {
                             MaterialPageRoute(
                                 builder: (context) => const NotiPage()));
                       },
-                      icon: const Icon(Icons.notifications_none_outlined,
-                          size: 30))
+                      icon: const Icon(Icons.notifications,
+                          color: Colors.white, size: 30))
                 ])));
   }
 
@@ -109,8 +113,9 @@ class _HomescreenState extends State<Homescreen> {
                 pageNo = index;
                 setState(() {});
               },
-              itemCount: 6,
+              itemCount: carous.length,
               itemBuilder: (_, index) {
+                final carou = carous[index];
                 return AnimatedBuilder(
                   animation: pageController,
                   builder: (context, child) {
@@ -120,7 +125,9 @@ class _HomescreenState extends State<Homescreen> {
                     margin: const EdgeInsets.all(8),
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(20),
-                        color: Colors.black),
+                        image: DecorationImage(
+                            image: NetworkImage(carou.image),
+                            fit: BoxFit.cover)),
                   ),
                 );
               })),
@@ -133,7 +140,9 @@ class _HomescreenState extends State<Homescreen> {
                   margin: const EdgeInsets.all(2),
                   child: Icon(Icons.circle,
                       size: 12.0,
-                      color: pageNo == index ? Colors.black : Colors.grey)))),
+                      color: pageNo == index
+                          ? const Color.fromRGBO(26, 72, 98, 10)
+                          : Colors.grey)))),
     ]);
   }
 
@@ -152,108 +161,75 @@ class _HomescreenState extends State<Homescreen> {
         itemCount: products.length,
         itemBuilder: (context, index) {
           final product = products[index];
-          return Container(
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(16),
-              color: Colors.amber,
+          return ProductCard(
+            product: product,
+            margin: EdgeInsets.symmetric(
+              horizontal: MediaQuery.sizeOf(context).width * 0.02,
+              vertical: MediaQuery.sizeOf(context).height * 0.02,
             ),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                ClipRRect(
-                  borderRadius: const BorderRadius.only(
-                    topLeft: Radius.circular(16.0),
-                    topRight: Radius.circular(16.0),
-                  ),
-                  child: Image.network(
-                    product.imageUrl,
-                    height: 150,
-                    width: double.infinity,
-                    fit: BoxFit.cover,
-                  ),
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) {
+                    return ProductPagge(product: product);
+                  },
                 ),
-                Padding(
-                  padding: const EdgeInsets.all(10),
-                  child: Text(product.title,
-                      style: const TextStyle(
-                          fontSize: 20, fontWeight: FontWeight.bold)),
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(10),
-                  child: Text('\$${product.price.toString()}',
-                      style: const TextStyle(fontSize: 16, color: Colors.grey)),
-                ),
-                const SizedBox(
-                  height: 1.0,
-                ),
-                Row(
-                  children: [
-                    IconButton(
-                      onPressed: () {
-                        Provider.of<FavProvider>(context, listen: false)
-                            .addToCart(product);
-                        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                            content:
-                                Text('${product.title} added to Wishlist')));
-                      },
-                      icon: const Icon(
-                        Icons.favorite_outline_outlined,
-                      ),
-                    ),
-                    IconButton(
-                      onPressed: () {
-                        Provider.of<CartProvider>(context, listen: false)
-                            .addToCart(product);
-                        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                            content: Text('${product.title} added to cart')));
-                      },
-                      icon: const Icon(
-                        Icons.add_shopping_cart_outlined,
-                      ),
-                    ),
-                  ],
-                ),
-              ],
-            ),
+              );
+            },
           );
         });
   }
 
   _rowW(BuildContext context) {
-    return Container(
-        color: const Color.fromARGB(255, 212, 202, 179).withOpacity(0.3),
-        height: 150,
+    return SizedBox(
+        height: 175,
         child: Column(children: [
           Expanded(
             child: ListView.builder(
                 scrollDirection: Axis.horizontal,
-                itemCount: catMap.length,
+                itemCount: categors.length,
                 itemBuilder: (context, index) {
+                  final categ = categors[index];
                   return Padding(
-                      padding: const EdgeInsets.only(top: 18),
+                      padding: const EdgeInsets.only(top: 10, bottom: 10),
                       child: Container(
-                        width: 85,
-                        margin: const EdgeInsets.only(left: 1, right: 1),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: <Widget>[
-                            ClipRRect(
-                              borderRadius: BorderRadius.circular(8),
-                              child: Image.asset(
-                                "${catMap.elementAt(index)['images']}",
-                                height: 70,
-                                width: 75,
-                                fit: BoxFit.cover,
+                        width: 100,
+                        margin: const EdgeInsets.only(left: 5, right: 5),
+                        decoration: BoxDecoration(
+                            boxShadow: const [
+                              BoxShadow(
+                                color: Colors.black12,
+                                spreadRadius: 1,
+                                blurRadius: 10,
                               ),
-                            ),
-                            const SizedBox(
-                              height: 8,
-                            ),
-                            Text(
-                              "${catMap.elementAt(index)['title']}",
-                              style: const TextStyle(
-                                  fontSize: 16, fontWeight: FontWeight.bold),
-                            ),
+                            ],
+                            borderRadius: BorderRadius.circular(8),
+                            image: DecorationImage(
+                                image: NetworkImage(categ.image),
+                                fit: BoxFit.cover)),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          children: [
+                            Container(
+                                decoration: BoxDecoration(
+                                    color: const Color.fromARGB(255, 32, 28, 27)
+                                        .withOpacity(0.3),
+                                    borderRadius: BorderRadius.circular(8)),
+                                height: 30,
+                                width: 102,
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Text(
+                                      categ.title,
+                                      style: const TextStyle(
+                                          fontSize: 16,
+                                          color: Colors.white,
+                                          fontWeight: FontWeight.bold),
+                                    ),
+                                  ],
+                                ))
                           ],
                         ),
                       ));

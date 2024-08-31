@@ -1,4 +1,4 @@
-import 'package:ecommc/models/products.dart';
+import 'package:ecommc/models/product_s.dart';
 import 'package:flutter/foundation.dart';
 
 class CartProvider with ChangeNotifier {
@@ -14,6 +14,10 @@ class CartProvider with ChangeNotifier {
   void removeFromCart(Product product) {
     _cartItems.remove(product);
     notifyListeners();
+  }
+
+  double get totalAmount {
+    return _cartItems.fold(0.0, (sum, favItems) => sum + favItems.price);
   }
 }
 
