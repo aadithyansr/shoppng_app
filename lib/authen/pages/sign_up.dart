@@ -40,11 +40,18 @@ class _signupState extends State<signup> {
             child: Column(
           children: [
             Padding(
-                padding: const EdgeInsets.all(5),
+                padding: const EdgeInsets.all(20),
                 child: Container(
                   height: 150,
-                  decoration: const BoxDecoration(
-                    color: Color.fromRGBO(76, 119, 102, 1),
+                  decoration: BoxDecoration(
+                    boxShadow: [BoxShadow(color: Colors.grey)],
+                    border: Border.all(
+                        width: 3, color: const Color.fromRGBO(26, 72, 98, 100)),
+                    image: const DecorationImage(
+                        image: NetworkImage(
+                            'https://imgs.search.brave.com/KNp7HC95a9KvqZTSZ2k1DRx_t7HSix4D2onFG08w4Q8/rs:fit:500:0:0:0/g:ce/aHR0cHM6Ly90NC5m/dGNkbi5uZXQvanBn/LzA1LzE1LzAzLzAx/LzM2MF9GXzUxNTAz/MDExNV9vUG9GZHIx/bVNVMDRoWFpTVHI5/TzJCSDVHbG5kd05E/MC5qcGc'),
+                        fit: BoxFit.cover),
+                    color: const Color.fromRGBO(76, 119, 102, 1),
                   ),
                 )),
             Padding(

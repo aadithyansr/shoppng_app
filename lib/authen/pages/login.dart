@@ -20,11 +20,15 @@ class Login extends StatelessWidget {
             child: Column(
           children: [
             Padding(
-                padding: const EdgeInsets.all(5),
+                padding: const EdgeInsets.all(20),
                 child: Container(
-                  height: 150,
+                  height: 280,
                   decoration: const BoxDecoration(
-                    color: Color.fromRGBO(76, 119, 102, 1),
+                    image: const DecorationImage(
+                        image: NetworkImage(
+                            'https://imgs.search.brave.com/haKay6dlt7Etj2JvioGp5sJ51NHyzRkzv4rSjqwy8rQ/rs:fit:500:0:0:0/g:ce/aHR0cHM6Ly9tZWRp/YS5pc3RvY2twaG90/by5jb20vaWQvMTQw/NzYzMzUzMi92ZWN0/b3IvZm9yZ2V0LXBh/c3N3b3JkLWljb24t/YWNjb3VudC1wcm90/ZWN0aW9uLXNlY3Vy/aXR5LWtleS1kYW5n/ZXItd2FybmluZy13/cm9uZy1wYXNzd29y/ZC1kZXNpZ24uanBn/P3M9NjEyeDYxMiZ3/PTAmaz0yMCZjPW5k/Y1FHM2FkZTZNTHFi/RmJENS1wR2dKU00t/STc2SUZ4SFhBVW1l/WTlCZnc9'),
+                        fit: BoxFit.cover),
+                    color: const Color.fromRGBO(76, 119, 102, 1),
                   ),
                 )),
             Padding(
