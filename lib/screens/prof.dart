@@ -1,8 +1,13 @@
 import 'dart:async';
 
+import 'package:ecommc/authen/pages/sign_up.dart';
+import 'package:ecommc/models/provider.dart';
 import 'package:ecommc/screens/components/dra_bot.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class Prof extends StatefulWidget {
   const Prof({super.key});
@@ -12,6 +17,22 @@ class Prof extends StatefulWidget {
 }
 
 class _ProfState extends State<Prof> {
+  @override
+  void initState() {
+    getData();
+    super.initState();
+  }
+
+  var name;
+  var email;
+  var uid;
+
+  getData() async {
+    final SharedPreferences _pref = await SharedPreferences.getInstance();
+    name = await _pref.getString('name');
+    setState(() {});
+  }
+
   final ScrollController scrollController = ScrollController();
   @override
   Widget build(BuildContext context) {
@@ -62,14 +83,17 @@ class _ProfState extends State<Prof> {
   }
 
   _profileBar(BuildContext context) {
+    final userProvider = Provider.of<UserProvider>(context, listen: false);
+    User? user = FirebaseAuth.instance.currentUser;
+
     return Column(children: [
       Container(
         margin: const EdgeInsets.all(2),
         height: 100,
-        child: const Row(
+        child: Row(
           children: [
-            SizedBox(width: 10),
-            CircleAvatar(
+            const SizedBox(width: 10),
+            const CircleAvatar(
               backgroundImage: AssetImage('assets/img/fit.webp'),
               radius: 45,
               child: Align(
@@ -84,17 +108,33 @@ class _ProfState extends State<Prof> {
                 ),
               ),
             ),
-            SizedBox(width: 15),
-            Text(
-              'Leo Messi',
-              style: TextStyle(
-                  fontSize: 30,
-                  fontWeight: FontWeight.bold,
-                  color: Color.fromARGB(255, 250, 246, 246)),
-            ),
+            const SizedBox(width: 15),
+            Container(
+                width: 240,
+                child: FutureBuilder(
+                    future: userProvider.fetchName(user!.uid.toString()),
+                    builder: (context, snapshot) {
+                      print(userProvider.name);
+                      if (snapshot.connectionState == ConnectionState.waiting) {
+                        return const CircularProgressIndicator();
+                      }
+                      if (snapshot.hasError) {
+                        return const Text('error');
+                      }
+
+                      print("I  am here ");
+                      return Text(
+                        userProvider.name,
+                        style: const TextStyle(
+                            color: Color.fromARGB(255, 245, 243, 243),
+                            fontWeight: FontWeight.bold,
+                            fontSize: 30),
+                      );
+                    }))
           ],
         ),
       ),
+      const SizedBox(height: 10),
       Container(
         margin: const EdgeInsets.only(bottom: 30, left: 10, right: 10),
         height: 50,
@@ -333,19 +373,28 @@ class _ProfState extends State<Prof> {
                                       ],
                                     ),
                                     divideR(context),
-                                    const Row(
+                                    Row(
                                       children: [
-                                        Icon(
+                                        const Icon(
                                           Icons.logout,
                                           size: 25,
                                           color: Colors.redAccent,
                                         ),
-                                        SizedBox(width: 10),
-                                        Text('Log Out',
-                                            style: TextStyle(
-                                                fontWeight: FontWeight.normal,
-                                                color: Colors.white,
-                                                fontSize: 18)),
+                                        const SizedBox(width: 10),
+                                        GestureDetector(
+                                          child: const Text('Log Out',
+                                              style: TextStyle(
+                                                  fontWeight: FontWeight.normal,
+                                                  color: Colors.white,
+                                                  fontSize: 18)),
+                                          onTap: () {
+                                            Navigator.pushReplacement(
+                                                context,
+                                                MaterialPageRoute(
+                                                    builder: (context) =>
+                                                        signup()));
+                                          },
+                                        )
                                       ],
                                     ),
                                   ],
@@ -379,11 +428,22 @@ class _LoaderState extends State<Loader> {
   @override
   void initState() {
     super.initState();
+    getData();
 
     Timer(
         const Duration(seconds: 2),
         () => Navigator.pushReplacement(context,
             MaterialPageRoute(builder: (context) => const BottmPage())));
+  }
+
+  var name;
+  var email;
+  var uid;
+
+  getData() async {
+    final SharedPreferences _pref = await SharedPreferences.getInstance();
+    name = await _pref.getString('name');
+    setState(() {});
   }
 
   Widget build(BuildContext context) {
@@ -396,7 +456,7 @@ class _LoaderState extends State<Loader> {
             CircularProgressIndicator(
               backgroundColor: Colors.white,
               valueColor: AlwaysStoppedAnimation(Colors.green),
-              strokeWidth: 8,
+              strokeWidth: 6,
             )
           ],
         ),

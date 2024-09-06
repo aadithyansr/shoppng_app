@@ -3,12 +3,31 @@ import 'package:ecommc/authen/service/auth.dart';
 import 'package:ecommc/screens/prof.dart';
 import 'package:flutter/material.dart';
 
-class signup extends StatelessWidget {
+class signup extends StatefulWidget {
   signup({super.key});
 
+  @override
+  State<signup> createState() => _signupState();
+}
+
+class _signupState extends State<signup> {
   final TextEditingController emailcontroller = TextEditingController();
+
   final TextEditingController passcontroller = TextEditingController();
+
   final TextEditingController namecontroller = TextEditingController();
+
+  void signUpUser() async {
+    String? res = await AuthService().signUpUser(
+        name: namecontroller.text,
+        email: emailcontroller.text,
+        password: passcontroller.text);
+    if (res == 'Success') {
+      Navigator.pushReplacement(
+          context, MaterialPageRoute(builder: (context) => Loader()));
+    }
+    ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(res!)));
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -104,21 +123,8 @@ class signup extends StatelessWidget {
                           ))),
                 )),
             Padding(
-                padding: const EdgeInsets.only(top: 10, right: 20, left: 20),
-                child: MyButtons(
-                    onTap: () async {
-                      final message = await AuthService().registration(
-                          name: namecontroller.text,
-                          email: emailcontroller.text,
-                          password: passcontroller.text);
-                      if (message!.contains('Success')) {
-                        Navigator.pushReplacement(context,
-                            MaterialPageRoute(builder: (context) => Loader()));
-                      }
-                      ScaffoldMessenger.of(context)
-                          .showSnackBar(SnackBar(content: Text(message)));
-                    },
-                    text: 'Create Account')),
+                padding: EdgeInsets.only(top: 10, right: 20, left: 20),
+                child: MyButtons(onTap: signUpUser, text: 'Create Account')),
             Padding(
                 padding: const EdgeInsets.only(top: 5, right: 10, left: 10),
                 child: GestureDetector(

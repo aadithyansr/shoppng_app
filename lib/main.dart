@@ -1,6 +1,5 @@
 import 'package:ecommc/authen/pages/sign_up.dart';
 import 'package:ecommc/models/provider.dart';
-
 import 'package:firebase_core/firebase_core.dart';
 
 import 'package:flutter/material.dart';
@@ -22,6 +21,7 @@ class MainApp extends StatelessWidget {
         providers: [
           ChangeNotifierProvider(create: (_) => CartProvider()),
           ChangeNotifierProvider(create: (_) => FavProvider()),
+          ChangeNotifierProvider(create: (_) => UserProvider()),
         ],
         child: MaterialApp(
           debugShowCheckedModeBanner: false,

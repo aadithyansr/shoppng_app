@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:ecommc/models/product_s.dart';
 import 'package:flutter/foundation.dart';
 
@@ -34,5 +35,22 @@ class FavProvider with ChangeNotifier {
   void removeFromCart(Product product) {
     _favItems.remove(product);
     notifyListeners();
+  }
+}
+
+class UserProvider with ChangeNotifier {
+  String _name = '';
+  String get name => _name;
+  Future<void> fetchName(String uid) async {
+    print(uid);
+    try {
+      var userDoc =
+          await FirebaseFirestore.instance.collection('users').doc(uid).get();
+      _name = userDoc.data()?['name'] ?? 'no';
+      print(name);
+      notifyListeners();
+    } catch (e) {
+      print('error: $e');
+    }
   }
 }
